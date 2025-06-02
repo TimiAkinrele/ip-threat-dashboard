@@ -34,15 +34,14 @@ def highlight_risk(row):
     elif score > 0:
         return ['background-color: yellow'] * len(row)
     else:
-        return ['background-color: grey'] * len(row)
+        return ['background-color: white'] * len(row)
 
 # ---------------------------------------
 # Streamlit UI
 # ---------------------------------------
-st.set_page_config(page_title="IP Threat Dashboard", layout="centered")
+st.set_page_config(page_title="IP Threat Checker", layout="centered")
 st.title("🛡️ IP Threat Intelligence Dashboard")
-st.caption("Built with Streamlit • AbuseIPDB • GeoIP • Python 💻")
-
+st.caption("Powered by AbuseIPDB + GeoIP + Streamlit")
 
 # ---------------------------------------
 # SINGLE IP LOOKUP

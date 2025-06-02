@@ -1,18 +1,16 @@
 import requests
-import os
-import time
+#import os
+#import time
 import ipaddress
-import csv
-from dotenv import load_dotenv
+#import csv
+#from dotenv import load_dotenv
 import streamlit as st
 
 
 #load environment variables
-load_dotenv()
+#load_dotenv()
 
 API_KEY = st.secrets["api"]["abuseipdb_key"]
-if not API_KEY:
-    raise EnvironmentError("API key not found. Check your .env file or environemnt variables.")
 
 def is_valid_ip(ip):
     try:
@@ -33,10 +31,14 @@ def check_ip(ip_address):
         'Key': API_KEY
     }
     try:
-        response = requests.get(url, headers=headers, params=querystring)
+        response = requests.get(url, headers=headers, params=querystring, timeout=10)
+        if response.status_code == 200:
+            return response.json()['data']
+        else:
+            st.error(f"API Error {response.status_code}: {response.text}")
     except requests.exceptions.RequestException as e:
-        print(f"Network/API error: {e}")
-        return None
+        st.error(f"Network Error: {e}")
+    return None
 
     if response.status_code == 200:
         data = response.json()['data']
