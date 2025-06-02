@@ -1,0 +1,30 @@
+# Python cache and virtualenvs
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+.venv/
+env/
+venv/
+
+# Environment config (local secrets)
+.env
+*.env
+
+# Jupyter or notebooks (optional)
+*.ipynb
+.ipynb_checkpoints/
+
+# Mac system files (if you're on macOS)
+.DS_Store
+
+# VS Code settings (optional)
+.vscode/
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Example data files
+*.csv
+ips.txt
