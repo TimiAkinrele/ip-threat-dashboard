@@ -4,11 +4,13 @@ import time
 import ipaddress
 import csv
 from dotenv import load_dotenv
+import streamlit as st
+
 
 #load environment variables
 load_dotenv()
 
-API_KEY=os.getenv("ABUSEIPDB_API_KEY")
+API_KEY = st.secrets["api"]["abuseipdb_key"]
 if not API_KEY:
     raise EnvironmentError("API key not found. Check your .env file or environemnt variables.")
 
