@@ -34,7 +34,7 @@ def highlight_risk(row):
     elif score > 0:
         return ['background-color: yellow'] * len(row)
     else:
-        return ['background-color: white'] * len(row)
+        return ['background-color: grey'] * len(row)
 
 # ---------------------------------------
 # Streamlit UI
@@ -54,6 +54,17 @@ if ip:
         result = check_ip(ip)
         if result:
             st.success("✅ Lookup complete!")
+
+            location = get_ip_location(ip)
+            if location:
+                st.map(pd.DataFrame([{
+                    "latitude": location['lat'],
+                    "longitude": location['lon']
+                }]))
+                st.markdown(f"📍 **Location**: {location['city']}, {location['country']}")
+            else:
+                st.info("No geolocation data available for this IP.")
+
             single_result = {
                 "IP": result['ipAddress'],
                 "Abuse Score": result['abuseConfidenceScore'],

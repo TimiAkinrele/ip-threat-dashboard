@@ -30,6 +30,7 @@ def check_ip(ip_address):
         'Accept': 'application/json',
         'Key': API_KEY
     }
+    
     try:
         response = requests.get(url, headers=headers, params=querystring, timeout=10)
         if response.status_code == 200:
